@@ -9,52 +9,70 @@ import Footer from "@/components/Footer";
 const Forfaits = () => {
   const plans = [
     {
-      name: "Essentiel",
-      price: "9.99",
+      name: "1 Mois",
+      price: "10",
       duration: "mois",
-      description: "Parfait pour découvrir nos services",
+      description: "Idéal pour découvrir notre service",
       features: [
-        "5 000+ chaînes en direct",
-        "10 000+ VOD",
-        "Qualité HD",
-        "1 connexion simultanée",
-        "Support par email",
-        "EPG 7 jours",
+        "HD & 4K",
+        "+20.000 chaînes TV",
+        "+30.000 films et séries",
+        "Compatible avec toutes les applications",
+        "Mises à jour GRATUITES",
+        "Support 24/7",
+        "Service après-vente",
+        "Rapide et stable",
       ],
       popular: false,
     },
     {
-      name: "Premium",
-      price: "14.99",
-      duration: "mois",
-      description: "Notre offre la plus populaire",
+      name: "3 Mois",
+      price: "15",
+      duration: "3 mois",
+      description: "Parfait pour une utilisation régulière",
       features: [
-        "15 000+ chaînes en direct",
-        "50 000+ VOD",
-        "Qualité 4K/HD/FHD",
-        "3 connexions simultanées",
-        "Support prioritaire 24/7",
-        "EPG complet",
-        "Anti-freeze garanti",
-        "Mise à jour automatique",
+        "HD & 4K",
+        "+20.000 chaînes TV",
+        "+30.000 films et séries",
+        "Compatible avec toutes les applications",
+        "Mises à jour GRATUITES",
+        "Support 24/7",
+        "Service après-vente",
+        "Rapide et stable",
       ],
       popular: true,
     },
     {
-      name: "Ultimate",
-      price: "24.99",
-      duration: "mois",
-      description: "Pour une expérience ultime",
+      name: "6 Mois",
+      price: "25",
+      duration: "6 mois",
+      description: "Meilleur rapport qualité-prix",
       features: [
-        "20 000+ chaînes en direct",
-        "80 000+ VOD",
-        "Qualité 4K/HD/FHD",
-        "5 connexions simultanées",
-        "Support VIP dédié 24/7",
-        "EPG complet + catch-up",
-        "Anti-freeze premium",
-        "Installation à distance",
-        "Playlist personnalisée",
+        "HD & 4K",
+        "+20.000 chaînes TV",
+        "+30.000 films et séries",
+        "Compatible avec toutes les applications",
+        "Mises à jour GRATUITES",
+        "Support 24/7",
+        "Service après-vente",
+        "Rapide et stable",
+      ],
+      popular: false,
+    },
+    {
+      name: "12 Mois",
+      price: "40",
+      duration: "12 mois",
+      description: "L'offre la plus économique",
+      features: [
+        "HD & 4K",
+        "+20.000 chaînes TV",
+        "+30.000 films et séries",
+        "Compatible avec toutes les applications",
+        "Mises à jour GRATUITES",
+        "Support 24/7",
+        "Service après-vente",
+        "Rapide et stable",
       ],
       popular: false,
     },
@@ -73,14 +91,14 @@ const Forfaits = () => {
             className="text-center mb-16"
           >
             <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6">
-              Choisissez Votre <span className="text-gradient">Forfait</span>
+              Choisissez Votre <span className="text-gradient">Abonnement</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Des offres flexibles adaptées à tous vos besoins. Aucun engagement, résiliable à tout moment.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {plans.map((plan, index) => (
               <motion.div
                 key={index}

@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Tv } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
     { name: "Accueil", path: "/" },
-    { name: "Forfaits", path: "/forfaits" },
+    { name: "Abonnement", path: "/forfaits" },
+    { name: "Guide", path: "/guide" },
     { name: "À propos", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
@@ -20,10 +22,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <Tv className="w-6 h-6 text-primary-foreground" />
-            </div>
-            <span className="font-heading text-xl font-bold text-gradient">StreamPro</span>
+            <img 
+              src={logo} 
+              alt="meru'IPTV" 
+              className="h-10 w-auto group-hover:scale-105 transition-transform duration-300"
+            />
           </Link>
 
           {/* Desktop Menu */}
