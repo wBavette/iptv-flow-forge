@@ -92,11 +92,11 @@ const Index = () => {
                   <Zap className="ml-2 w-5 h-5 group-hover:rotate-12 transition-transform" />
                 </Button>
               </Link>
-              <Link to="/contact">
+              <a href="https://wa.me/message/KEYQ6SKITE4SI1" target="_blank" rel="noopener noreferrer">
                 <Button variant="glassy" size="xl">
                   Essai Gratuit 24h
                 </Button>
-              </Link>
+              </a>
             </motion.div>
           </motion.div>
         </div>
@@ -116,7 +116,7 @@ const Index = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-              Pourquoi Choisir <span className="text-gradient">StreamPro</span> ?
+              Pourquoi Choisir <span className="text-gradient">meru'IPTV</span> ?
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Une expérience de streaming inégalée avec des fonctionnalités premium

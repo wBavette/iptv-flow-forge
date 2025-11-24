@@ -14,14 +14,14 @@ const Forfaits = () => {
       duration: "mois",
       description: "Idéal pour découvrir notre service",
       features: [
-        "HD & 4K",
+        "Qualité 4K & Full HD",
         "+20.000 chaînes TV",
         "+30.000 films et séries",
-        "Compatible avec toutes les applications",
-        "Mises à jour GRATUITES",
-        "Support 24/7",
-        "Service après-vente",
+        "Compatible avec tous vos appareils",
+        "Mises à jour automatiques",
+        "Support WhatsApp 7j/7",
         "Rapide et stable",
+        "Technologie anti-buffering",
       ],
       popular: false,
     },
@@ -31,16 +31,16 @@ const Forfaits = () => {
       duration: "3 mois",
       description: "Parfait pour une utilisation régulière",
       features: [
-        "HD & 4K",
+        "Qualité 4K & Full HD",
         "+20.000 chaînes TV",
         "+30.000 films et séries",
-        "Compatible avec toutes les applications",
-        "Mises à jour GRATUITES",
-        "Support 24/7",
-        "Service après-vente",
+        "Compatible avec tous vos appareils",
+        "Mises à jour automatiques",
+        "Support WhatsApp 7j/7",
         "Rapide et stable",
+        "Technologie anti-buffering",
       ],
-      popular: true,
+      popular: false,
     },
     {
       name: "6 Mois",
@@ -48,14 +48,14 @@ const Forfaits = () => {
       duration: "6 mois",
       description: "Meilleur rapport qualité-prix",
       features: [
-        "HD & 4K",
+        "Qualité 4K & Full HD",
         "+20.000 chaînes TV",
         "+30.000 films et séries",
-        "Compatible avec toutes les applications",
-        "Mises à jour GRATUITES",
-        "Support 24/7",
-        "Service après-vente",
+        "Compatible avec tous vos appareils",
+        "Mises à jour automatiques",
+        "Support WhatsApp 7j/7",
         "Rapide et stable",
+        "Technologie anti-buffering",
       ],
       popular: false,
     },
@@ -65,16 +65,16 @@ const Forfaits = () => {
       duration: "12 mois",
       description: "L'offre la plus économique",
       features: [
-        "HD & 4K",
+        "Qualité 4K & Full HD",
         "+20.000 chaînes TV",
         "+30.000 films et séries",
-        "Compatible avec toutes les applications",
-        "Mises à jour GRATUITES",
-        "Support 24/7",
-        "Service après-vente",
+        "Compatible avec tous vos appareils",
+        "Mises à jour automatiques",
+        "Support WhatsApp 7j/7",
         "Rapide et stable",
+        "Technologie anti-buffering",
       ],
-      popular: false,
+      popular: true,
     },
   ];
 
@@ -180,11 +180,11 @@ const Forfaits = () => {
               <p className="text-muted-foreground mb-6">
                 Essayez gratuitement pendant 24h avant de vous engager. Aucune carte bancaire requise !
               </p>
-              <Link to="/contact">
+              <a href="https://wa.me/message/KEYQ6SKITE4SI1" target="_blank" rel="noopener noreferrer">
                 <Button variant="hero" size="lg">
                   Démarrer l'Essai Gratuit
                 </Button>
-              </Link>
+              </a>
             </Card>
           </motion.div>
         </div>

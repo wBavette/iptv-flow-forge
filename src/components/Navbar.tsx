@@ -12,8 +12,7 @@ const Navbar = () => {
     { name: "Accueil", path: "/" },
     { name: "Abonnement", path: "/forfaits" },
     { name: "Guide", path: "/guide" },
-    { name: "À propos", path: "/about" },
-    { name: "Contact", path: "/contact" },
+    { name: "FAQ", path: "/faq" },
   ];
 
   return (
@@ -40,9 +39,11 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <Button variant="hero" size="default">
-              Commencer
-            </Button>
+            <a href="https://wa.me/c/33751028057" target="_blank" rel="noopener noreferrer">
+              <Button variant="hero" size="default">
+                Commencer
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -75,9 +76,11 @@ const Navbar = () => {
                   </Link>
                 ))}
                 <div className="px-4 pt-2">
-                  <Button variant="hero" size="default" className="w-full">
-                    Commencer
-                  </Button>
+                  <a href="https://wa.me/c/33751028057" target="_blank" rel="noopener noreferrer" className="block">
+                    <Button variant="hero" size="default" className="w-full">
+                      Commencer
+                    </Button>
+                  </a>
                 </div>
               </div>
             </motion.div>
