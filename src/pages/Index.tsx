@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Tv, Zap, Globe, Shield, Star } from "lucide-react";
+import { Check, Tv, Zap, Globe, Shield } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -40,26 +46,126 @@ const Index = () => {
     "Essai gratuit de 24h disponible",
   ];
 
-  const testimonials = [
+  const faqs = [
     {
-      name: "Sophie Martin",
-      rating: 5,
-      comment: "Service impeccable ! La qualité d'image est exceptionnelle et le support client très réactif. Je recommande vivement meru'IPTV.",
+      question: "Qu'est-ce que meru'IPTV ?",
+      answer: (
+        <>
+          <p className="mb-3">
+            <strong>meru'IPTV est né avec l'ambition de rendre l'accès à un contenu télévisuel de haute qualité plus accessible et à moindre coût.</strong>
+          </p>
+          <p className="mb-3">
+            <strong>Notre objectif —</strong> proposer une expérience fluide, performante et intuitive, portée par une technologie fiable anti-freeze et un support client attentif.
+          </p>
+          <p>
+            Nous avons conçu un service qui combine simplicité d'utilisation, large choix de contenus et accompagnement réactif pour offrir la meilleure expérience possible à nos utilisateurs.
+          </p>
+        </>
+      ),
     },
     {
-      name: "Thomas Dubois",
-      rating: 5,
-      comment: "Plus de 20 000 chaînes, aucun freeze, installation simple. Exactement ce que je cherchais pour remplacer mon abonnement TV classique.",
+      question: "Comment souscrire à meru'IPTV ?",
+      answer: (
+        <>
+          <p className="mb-3">
+            <strong>Une fois votre paiement effectué, votre accès est activé immédiatement : vous pouvez profiter de nos services sans attendre.</strong>
+          </p>
+          <p className="mb-3">
+            Le règlement se fait en un seul versement, sans renouvellement automatique, pour vous offrir une gestion simple, transparente et totalement sécurisée.
+          </p>
+          <p>
+            Pour le moment, les paiements sont acceptés uniquement via <strong>PayPal.</strong>
+          </p>
+        </>
+      ),
     },
     {
-      name: "Marie Lefebvre",
-      rating: 5,
-      comment: "Excellent rapport qualité-prix. L'interface est intuitive et la bibliothèque de films est immense. Je suis cliente depuis 6 mois et très satisfaite.",
+      question: "Puis-je annuler mon abonnement à tout moment ?",
+      answer: (
+        <>
+          <p className="mb-3">
+            <strong>Bonne nouvelle — il n'y a aucun renouvellement automatique sur meru'IPTV.</strong>
+          </p>
+          <p className="mb-3">
+            Pour votre sécurité, aucune information de paiement n'est enregistrée.
+            À la fin de votre abonnement, tout s'arrête automatiquement : aucun prélèvement, aucun engagement.
+          </p>
+          <p className="mb-3">
+            Vous êtes libre de renouveler manuellement si vous souhaitez continuer à profiter du service.
+          </p>
+          <p>
+            <strong>Une expérience transparente, sans pression et sans mauvaise surprise.</strong>
+          </p>
+        </>
+      ),
     },
     {
-      name: "Alexandre Bernard",
-      rating: 4,
-      comment: "Très bon service IPTV. Stable, rapide et avec un grand choix de contenus. Le support WhatsApp est vraiment pratique pour toute question.",
+      question: "Puis-je regarder meru'IPTV sur plusieurs appareils ?",
+      answer: (
+        <>
+          <p className="mb-3">
+            Nos services sont accessibles sur l'ensemble de vos appareils connectés : smartphone, télévision, tablette ou ordinateur.
+          </p>
+          <p>
+            Vous pouvez connecter ainsi qu'utiliser plusieurs appareils en même temps, mais nous vous déconseillons la multi-lecture lors des soirées à forte affluence, car cela peut entraîner des ralentissements ou des coupures.
+          </p>
+        </>
+      ),
+    },
+    {
+      question: "Quelle est la qualité de streaming disponible ?",
+      answer: (
+        <>
+          <p className="mb-3">
+            meru'IPTV propose des contenus en <strong>Full HD et 4K</strong>, selon la disponibilité des chaînes et votre connexion internet.
+          </p>
+          <p>
+            Notre technologie anti-buffering garantit une lecture fluide et stable, même lors des pics d'audience.
+          </p>
+        </>
+      ),
+    },
+    {
+      question: "Ai-je besoin d'un VPN pour utiliser meru'IPTV ?",
+      answer: (
+        <>
+          <p className="mb-3">
+            L'utilisation d'un VPN n'est pas obligatoire pour utiliser meru'IPTV, mais elle est recommandée pour protéger votre confidentialité en ligne.
+          </p>
+          <p>
+            Un VPN peut également améliorer votre expérience en évitant les restrictions géographiques et en sécurisant votre connexion.
+          </p>
+        </>
+      ),
+    },
+    {
+      question: "Que faire si je rencontre des problèmes techniques ?",
+      answer: (
+        <>
+          <p className="mb-3">
+            Notre équipe de support est disponible <strong>7 jours sur 7 via WhatsApp</strong> pour vous aider à résoudre tout problème technique.
+          </p>
+          <p className="mb-3">
+            Nous proposons également un guide d'installation détaillé pour chaque type d'appareil sur notre page Guide.
+          </p>
+          <p>
+            La plupart des problèmes peuvent être résolus rapidement en vérifiant votre connexion internet ou en redémarrant votre application.
+          </p>
+        </>
+      ),
+    },
+    {
+      question: "Puis-je essayer le service avant de m'abonner ?",
+      answer: (
+        <>
+          <p className="mb-3">
+            Oui ! Nous offrons un <strong>essai gratuit de 24 heures</strong> pour vous permettre de tester notre service sans engagement.
+          </p>
+          <p>
+            Aucune carte bancaire n'est requise pour l'essai. Contactez-nous via WhatsApp pour activer votre période d'essai gratuite.
+          </p>
+        </>
+      ),
     },
   ];
 
@@ -237,8 +343,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 relative">
+      {/* FAQ Section */}
+      <section className="py-20 bg-card/30">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -248,47 +354,68 @@ const Index = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-              Ce Que Disent Nos <span className="text-gradient">Clients</span>
+              Questions <span className="text-gradient">Fréquentes</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Des milliers de clients satisfaits nous font confiance chaque jour
+              Trouvez rapidement les réponses à vos questions sur meru'IPTV
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <Card className="p-8 bg-card border-border">
+              <Accordion type="single" collapsible className="w-full space-y-4">
+                {faqs.map((faq, index) => (
+                  <AccordionItem
+                    key={index}
+                    value={`item-${index}`}
+                    className="border-b border-border/50 pb-4"
+                  >
+                    <AccordionTrigger className="text-left hover:text-primary transition-colors">
+                      <span className="font-heading font-semibold text-lg">
+                        {faq.question}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="text-muted-foreground pt-2 leading-relaxed">
+                        {faq.answer}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-16 text-center"
+          >
+            <Card className="p-8 max-w-3xl mx-auto bg-gradient-to-br from-primary/10 to-card border-primary/20">
+              <h3 className="text-2xl font-heading font-bold mb-4">
+                Vous n'avez pas trouvé de réponse ?
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                Notre équipe support est disponible 7j/7 sur WhatsApp pour répondre à toutes vos questions
+              </p>
+              <a
+                href="https://wa.me/c/33751028057"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
               >
-                <Card className="p-6 h-full bg-card hover:bg-card/80 border-border hover:border-primary/50 transition-all duration-300 card-shadow group">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-5 h-5 ${
-                          i < testimonial.rating
-                            ? "text-primary fill-primary"
-                            : "text-muted-foreground/30"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <p className="text-foreground mb-4 leading-relaxed">
-                    "{testimonial.comment}"
-                  </p>
-                  <div className="mt-auto pt-4 border-t border-border/50">
-                    <p className="font-heading font-semibold text-foreground">
-                      {testimonial.name}
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                Contactez-nous sur WhatsApp
+              </a>
+            </Card>
+          </motion.div>
         </div>
       </section>
 

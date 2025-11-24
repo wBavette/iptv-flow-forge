@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Forfaits from "./pages/Forfaits";
 import Guide from "./pages/Guide";
-import FAQ from "./pages/FAQ";
+import Catalogue from "./pages/Catalogue";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,8 +20,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/forfaits" element={<Forfaits />} />
+          <Route path="/abonnement" element={<Forfaits />} />
+          <Route path="/catalogue" element={<Catalogue />} />
           <Route path="/guide" element={<Guide />} />
-          <Route path="/faq" element={<FAQ />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
