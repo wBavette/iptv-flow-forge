@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Tv, Zap, Globe, Shield } from "lucide-react";
+import { Check, Tv, Zap, Globe, Shield, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -38,6 +38,29 @@ const Index = () => {
     "Compatible avec tous les lecteurs IPTV",
     "Pas de contrat, résiliable à tout moment",
     "Essai gratuit de 24h disponible",
+  ];
+
+  const testimonials = [
+    {
+      name: "Sophie Martin",
+      rating: 5,
+      comment: "Service impeccable ! La qualité d'image est exceptionnelle et le support client très réactif. Je recommande vivement meru'IPTV.",
+    },
+    {
+      name: "Thomas Dubois",
+      rating: 5,
+      comment: "Plus de 20 000 chaînes, aucun freeze, installation simple. Exactement ce que je cherchais pour remplacer mon abonnement TV classique.",
+    },
+    {
+      name: "Marie Lefebvre",
+      rating: 5,
+      comment: "Excellent rapport qualité-prix. L'interface est intuitive et la bibliothèque de films est immense. Je suis cliente depuis 6 mois et très satisfaite.",
+    },
+    {
+      name: "Alexandre Bernard",
+      rating: 4,
+      comment: "Très bon service IPTV. Stable, rapide et avec un grand choix de contenus. Le support WhatsApp est vraiment pratique pour toute question.",
+    },
   ];
 
   return (
@@ -210,6 +233,61 @@ const Index = () => {
                 </div>
               </Card>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+              Ce Que Disent Nos <span className="text-gradient">Clients</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Des milliers de clients satisfaits nous font confiance chaque jour
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <Card className="p-6 h-full bg-card hover:bg-card/80 border-border hover:border-primary/50 transition-all duration-300 card-shadow group">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-5 h-5 ${
+                          i < testimonial.rating
+                            ? "text-primary fill-primary"
+                            : "text-muted-foreground/30"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <p className="text-foreground mb-4 leading-relaxed">
+                    "{testimonial.comment}"
+                  </p>
+                  <div className="mt-auto pt-4 border-t border-border/50">
+                    <p className="font-heading font-semibold text-foreground">
+                      {testimonial.name}
+                    </p>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
