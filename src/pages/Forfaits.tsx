@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check } from "lucide-react";
-import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -152,7 +151,7 @@ const Forfaits = () => {
                     ))}
                   </ul>
 
-                  <Link to="/contact" className="block">
+                  <a href="https://www.whatsapp.com/catalog/33751028057/?app_absent=0" target="_blank" rel="noopener noreferrer" className="block">
                     <Button
                       variant={plan.popular ? "hero" : "glassy"}
                       size="lg"
@@ -160,7 +159,7 @@ const Forfaits = () => {
                     >
                       Choisir ce Forfait
                     </Button>
-                  </Link>
+                  </a>
                 </Card>
               </motion.div>
             ))}
