@@ -37,46 +37,359 @@ const Catalogue = () => {
     { name: "Pays-Bas", code: "NL", count: 110 },
   ];
 
-  // Catégories par type de contenu
-  const channelCategories = [
-    { name: "Sport", count: 850 },
-    { name: "Cinéma", count: 3550 },
-    { name: "Documentaires", count: 420 },
-    { name: "Actualités", count: 380 },
-    { name: "Divertissement", count: 1200 },
-    { name: "Enfants", count: 650 },
-    { name: "Musique", count: 290 },
-  ];
+  // Catégories par type de contenu et par pays
+  const channelCategoriesByCountry: { [key: string]: Array<{ name: string; count: number }> } = {
+    "France": [
+      { name: "Sport", count: 124 },
+      { name: "Cinéma", count: 450 },
+      { name: "Documentaires", count: 85 },
+      { name: "Actualités", count: 95 },
+      { name: "Divertissement", count: 180 },
+      { name: "Enfants", count: 65 },
+      { name: "Musique", count: 45 },
+    ],
+    "Belgique": [
+      { name: "Sport", count: 42 },
+      { name: "Cinéma", count: 95 },
+      { name: "Actualités", count: 28 },
+      { name: "Divertissement", count: 45 },
+    ],
+    "Suisse": [
+      { name: "Sport", count: 32 },
+      { name: "Cinéma", count: 58 },
+      { name: "Actualités", count: 22 },
+      { name: "Divertissement", count: 38 },
+    ],
+    "UK": [
+      { name: "Sport", count: 125 },
+      { name: "Cinéma", count: 180 },
+      { name: "Documentaires", count: 95 },
+      { name: "Actualités", count: 75 },
+      { name: "Divertissement", count: 140 },
+      { name: "Enfants", count: 55 },
+    ],
+    "USA": [
+      { name: "Sport", count: 185 },
+      { name: "Cinéma", count: 280 },
+      { name: "Documentaires", count: 125 },
+      { name: "Actualités", count: 145 },
+      { name: "Divertissement", count: 240 },
+      { name: "Enfants", count: 95 },
+      { name: "Musique", count: 65 },
+    ],
+    "Arabes": [
+      { name: "Cinéma", count: 245 },
+      { name: "Sport", count: 155 },
+      { name: "Actualités", count: 125 },
+      { name: "Divertissement", count: 185 },
+      { name: "Enfants", count: 85 },
+      { name: "Musique", count: 48 },
+    ],
+    "Afrique": [
+      { name: "Cinéma", count: 125 },
+      { name: "Sport", count: 85 },
+      { name: "Actualités", count: 65 },
+      { name: "Divertissement", count: 95 },
+      { name: "Musique", count: 42 },
+    ],
+    "Espagne": [
+      { name: "Sport", count: 95 },
+      { name: "Cinéma", count: 125 },
+      { name: "Actualités", count: 55 },
+      { name: "Divertissement", count: 85 },
+    ],
+    "Portugal": [
+      { name: "Sport", count: 48 },
+      { name: "Cinéma", count: 65 },
+      { name: "Actualités", count: 32 },
+      { name: "Divertissement", count: 42 },
+    ],
+    "Italie": [
+      { name: "Sport", count: 85 },
+      { name: "Cinéma", count: 110 },
+      { name: "Actualités", count: 48 },
+      { name: "Divertissement", count: 75 },
+    ],
+    "Allemagne": [
+      { name: "Sport", count: 105 },
+      { name: "Cinéma", count: 135 },
+      { name: "Documentaires", count: 65 },
+      { name: "Actualités", count: 68 },
+      { name: "Divertissement", count: 95 },
+    ],
+    "Turquie": [
+      { name: "Cinéma", count: 155 },
+      { name: "Sport", count: 95 },
+      { name: "Actualités", count: 75 },
+      { name: "Divertissement", count: 125 },
+    ],
+    "Inde": [
+      { name: "Cinéma", count: 245 },
+      { name: "Sport", count: 125 },
+      { name: "Divertissement", count: 185 },
+      { name: "Actualités", count: 95 },
+      { name: "Musique", count: 65 },
+    ],
+    "Asie": [
+      { name: "Cinéma", count: 285 },
+      { name: "Sport", count: 165 },
+      { name: "Divertissement", count: 245 },
+      { name: "Actualités", count: 125 },
+      { name: "Enfants", count: 95 },
+    ],
+    "Canada": [
+      { name: "Sport", count: 32 },
+      { name: "Cinéma", count: 42 },
+      { name: "Actualités", count: 25 },
+      { name: "Divertissement", count: 35 },
+    ],
+    "Amérique Latine": [
+      { name: "Sport", count: 145 },
+      { name: "Cinéma", count: 185 },
+      { name: "Divertissement", count: 155 },
+      { name: "Actualités", count: 85 },
+      { name: "Musique", count: 48 },
+    ],
+    "Pays-Bas": [
+      { name: "Sport", count: 35 },
+      { name: "Cinéma", count: 48 },
+      { name: "Actualités", count: 22 },
+      { name: "Divertissement", count: 32 },
+    ],
+  };
 
-  const movieCategories = [
-    { name: "Action & Aventure", count: 2840 },
-    { name: "Comédie", count: 3120 },
-    { name: "Drame", count: 2650 },
-    { name: "Science-Fiction", count: 1580 },
-    { name: "Horreur", count: 1420 },
-    { name: "Thriller", count: 1890 },
-    { name: "Romance", count: 1650 },
-    { name: "Animation", count: 980 },
-    { name: "Films Famille", count: 1240 },
-    { name: "Documentaires", count: 850 },
-    { name: "Films Classiques", count: 1120 },
-    { name: "Films 4K", count: 890 },
-  ];
+  const movieCategoriesByCountry: { [key: string]: Array<{ name: string; count: number }> } = {
+    "France": [
+      { name: "Action & Aventure", count: 485 },
+      { name: "Comédie", count: 625 },
+      { name: "Drame", count: 548 },
+      { name: "Thriller", count: 385 },
+      { name: "Romance", count: 342 },
+      { name: "Science-Fiction", count: 285 },
+      { name: "Films Classiques", count: 245 },
+      { name: "Documentaires", count: 185 },
+    ],
+    "Belgique": [
+      { name: "Drame", count: 125 },
+      { name: "Comédie", count: 95 },
+      { name: "Thriller", count: 68 },
+      { name: "Romance", count: 48 },
+    ],
+    "Suisse": [
+      { name: "Drame", count: 85 },
+      { name: "Comédie", count: 65 },
+      { name: "Documentaires", count: 42 },
+    ],
+    "UK": [
+      { name: "Action & Aventure", count: 285 },
+      { name: "Comédie", count: 345 },
+      { name: "Drame", count: 385 },
+      { name: "Thriller", count: 245 },
+      { name: "Science-Fiction", count: 185 },
+      { name: "Horreur", count: 165 },
+      { name: "Films Classiques", count: 195 },
+    ],
+    "USA": [
+      { name: "Action & Aventure", count: 1245 },
+      { name: "Comédie", count: 985 },
+      { name: "Drame", count: 845 },
+      { name: "Science-Fiction", count: 685 },
+      { name: "Horreur", count: 545 },
+      { name: "Thriller", count: 685 },
+      { name: "Romance", count: 485 },
+      { name: "Animation", count: 345 },
+      { name: "Films 4K", count: 485 },
+    ],
+    "Arabes": [
+      { name: "Films Arabes 2024", count: 685 },
+      { name: "Films Arabes Classiques", count: 845 },
+      { name: "Films Égyptiens", count: 485 },
+      { name: "Films Marocains", count: 245 },
+      { name: "Films Algériens", count: 185 },
+      { name: "Films Tunisiens", count: 165 },
+      { name: "Comédie Arabe", count: 285 },
+      { name: "Drame Arabe", count: 385 },
+      { name: "Films pour Enfants", count: 245 },
+    ],
+    "Afrique": [
+      { name: "Films Africains", count: 485 },
+      { name: "Afrique du Sud", count: 245 },
+      { name: "Nollywood", count: 385 },
+      { name: "Documentaires", count: 165 },
+    ],
+    "Turquie": [
+      { name: "Films Turcs", count: 385 },
+      { name: "Drame Turc", count: 285 },
+      { name: "Comédie Turque", count: 185 },
+      { name: "Romance Turque", count: 145 },
+    ],
+    "Inde": [
+      { name: "Bollywood", count: 1245 },
+      { name: "Action Indienne", count: 485 },
+      { name: "Romance Indienne", count: 545 },
+      { name: "Comédie Indienne", count: 385 },
+      { name: "Drame Indien", count: 445 },
+    ],
+    "Espagne": [
+      { name: "Films Espagnols", count: 285 },
+      { name: "Drame Espagnol", count: 185 },
+      { name: "Comédie Espagnole", count: 145 },
+      { name: "Thriller Espagnol", count: 95 },
+    ],
+    "Portugal": [
+      { name: "Films Portugais", count: 125 },
+      { name: "Drame Portugais", count: 85 },
+      { name: "Comédie Portugaise", count: 48 },
+    ],
+    "Italie": [
+      { name: "Films Italiens", count: 345 },
+      { name: "Drame Italien", count: 185 },
+      { name: "Comédie Italienne", count: 145 },
+      { name: "Films Classiques", count: 125 },
+    ],
+    "Allemagne": [
+      { name: "Films Allemands", count: 285 },
+      { name: "Thriller Allemand", count: 145 },
+      { name: "Drame Allemand", count: 165 },
+      { name: "Action", count: 95 },
+    ],
+    "Asie": [
+      { name: "Films Coréens", count: 485 },
+      { name: "Films Japonais", count: 385 },
+      { name: "Films Chinois", count: 445 },
+      { name: "Films Thaïlandais", count: 245 },
+      { name: "Action Asiatique", count: 385 },
+      { name: "Drame Asiatique", count: 445 },
+    ],
+    "Canada": [
+      { name: "Films Canadiens", count: 125 },
+      { name: "Drame", count: 68 },
+      { name: "Comédie", count: 48 },
+    ],
+    "Amérique Latine": [
+      { name: "Films Mexicains", count: 285 },
+      { name: "Films Brésiliens", count: 245 },
+      { name: "Films Argentins", count: 185 },
+      { name: "Drame Latino", count: 245 },
+      { name: "Comédie Latino", count: 185 },
+    ],
+    "Pays-Bas": [
+      { name: "Films Néerlandais", count: 95 },
+      { name: "Drame", count: 48 },
+      { name: "Comédie", count: 35 },
+    ],
+  };
 
-  const seriesCategories = [
-    { name: "Action", count: 1840 },
-    { name: "Comédie", count: 2120 },
-    { name: "Drame", count: 2850 },
-    { name: "Crime", count: 1680 },
-    { name: "Sci-Fi", count: 920 },
-    { name: "Thriller", count: 1450 },
-    { name: "Romance", count: 980 },
-    { name: "Animation", count: 650 },
-    { name: "Aventure", count: 1340 },
-    { name: "Documentaires", count: 540 },
-    { name: "Classiques", count: 620 },
-    { name: "Mini-Séries", count: 480 },
-  ];
+  const seriesCategoriesByCountry: { [key: string]: Array<{ name: string; count: number }> } = {
+    "France": [
+      { name: "Séries Françaises", count: 485 },
+      { name: "Crime & Thriller", count: 285 },
+      { name: "Drame", count: 385 },
+      { name: "Comédie", count: 245 },
+      { name: "Action", count: 185 },
+    ],
+    "Belgique": [
+      { name: "Séries Belges", count: 125 },
+      { name: "Crime", count: 68 },
+      { name: "Drame", count: 85 },
+    ],
+    "Suisse": [
+      { name: "Séries Suisses", count: 85 },
+      { name: "Drame", count: 48 },
+      { name: "Crime", count: 35 },
+    ],
+    "UK": [
+      { name: "Séries Britanniques", count: 685 },
+      { name: "Crime & Thriller", count: 385 },
+      { name: "Drame", count: 445 },
+      { name: "Comédie", count: 285 },
+      { name: "Science-Fiction", count: 185 },
+    ],
+    "USA": [
+      { name: "Séries Américaines", count: 1485 },
+      { name: "Action", count: 585 },
+      { name: "Crime", count: 685 },
+      { name: "Drame", count: 845 },
+      { name: "Comédie", count: 645 },
+      { name: "Science-Fiction", count: 385 },
+      { name: "Thriller", count: 485 },
+      { name: "Animation", count: 285 },
+    ],
+    "Arabes": [
+      { name: "Séries Arabes 2024", count: 1052 },
+      { name: "Séries Arabes 2025", count: 928 },
+      { name: "Séries Égyptiennes", count: 685 },
+      { name: "Séries Marocaines", count: 385 },
+      { name: "Séries Syriennes", count: 445 },
+      { name: "Séries du Golfe", count: 985 },
+      { name: "Ramadan 2024", count: 845 },
+      { name: "Ramadan 2025", count: 685 },
+    ],
+    "Afrique": [
+      { name: "Séries Africaines", count: 1485 },
+      { name: "Afrique du Sud", count: 685 },
+      { name: "Nollywood Series", count: 845 },
+    ],
+    "Turquie": [
+      { name: "Séries Turques", count: 985 },
+      { name: "Drame Turc", count: 685 },
+      { name: "Romance Turque", count: 485 },
+      { name: "Séries 4K", count: 245 },
+    ],
+    "Inde": [
+      { name: "Séries Indiennes", count: 745 },
+      { name: "Drame Indien", count: 485 },
+      { name: "Romance Indienne", count: 385 },
+    ],
+    "Espagne": [
+      { name: "Séries Espagnoles", count: 485 },
+      { name: "Drame Espagnol", count: 285 },
+      { name: "Crime Espagnol", count: 185 },
+    ],
+    "Portugal": [
+      { name: "Séries Portugaises", count: 145 },
+      { name: "Drame", count: 85 },
+    ],
+    "Italie": [
+      { name: "Séries Italiennes", count: 285 },
+      { name: "Crime Italien", count: 145 },
+      { name: "Drame Italien", count: 185 },
+    ],
+    "Allemagne": [
+      { name: "Séries Allemandes", count: 345 },
+      { name: "Crime Allemand", count: 185 },
+      { name: "Thriller", count: 145 },
+    ],
+    "Asie": [
+      { name: "Séries Coréennes", count: 685 },
+      { name: "Séries Japonaises", count: 485 },
+      { name: "Séries Chinoises", count: 545 },
+      { name: "Séries Thaïlandaises", count: 285 },
+      { name: "Drames Asiatiques", count: 745 },
+    ],
+    "Canada": [
+      { name: "Séries Canadiennes", count: 95 },
+      { name: "Drame", count: 55 },
+    ],
+    "Amérique Latine": [
+      { name: "Telenovelas", count: 485 },
+      { name: "Séries Mexicaines", count: 345 },
+      { name: "Séries Brésiliennes", count: 285 },
+      { name: "Séries Argentines", count: 185 },
+    ],
+    "Pays-Bas": [
+      { name: "Séries Néerlandaises", count: 85 },
+      { name: "Crime", count: 48 },
+    ],
+  };
+
+  const getCurrentCategories = () => {
+    if (!selectedCountry) return [];
+    
+    if (selectedTab === "channels") return channelCategoriesByCountry[selectedCountry] || [];
+    else if (selectedTab === "movies") return movieCategoriesByCountry[selectedCountry] || [];
+    else return seriesCategoriesByCountry[selectedCountry] || [];
+  };
 
   // Contenus fictifs (sera affiché au niveau 3)
   const getContentList = () => {
@@ -89,12 +402,6 @@ const Catalogue = () => {
       });
     }
     return items;
-  };
-
-  const getCurrentCategories = () => {
-    if (selectedTab === "channels") return channelCategories;
-    else if (selectedTab === "movies") return movieCategories;
-    else return seriesCategories;
   };
 
   const getCurrentData = () => {
