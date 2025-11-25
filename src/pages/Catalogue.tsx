@@ -391,14 +391,70 @@ const Catalogue = () => {
     else return seriesCategoriesByCountry[selectedCountry] || [];
   };
 
-  // Contenus fictifs (sera affiché au niveau 3)
+  // Contenus réels avec noms et images
   const getContentList = () => {
+    // Données d'exemple basées sur le contenu réel des liens
+    const contentData: { [key: string]: Array<{ title: string; image: string; info?: string }> } = {
+      // Channels examples
+      "24/7 CINEMA VIP": [
+        { title: "24/7 Action Movies", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "24/7 Comedy Central", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "24/7 Drama Channel", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "24/7 Horror Movies", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "24/7 Romance Films", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "24/7 Sci-Fi Channel", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+      ],
+      // Movies examples
+      "AFRICAN MOVIES": [
+        { title: "A QUI LA FAUTE (2021)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - #Clout (2022)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - 2HRS AFTER MY WEDDING (2021)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - 3 Way (2021)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - 3 Working Days (2024)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - 30 Days in Atlanta (2014)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - 40 Acres (2025)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - A Country Called Ghana (2024)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - A Danfo Christmas (2024)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - A Father's Love (2024)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - A Lagos Love Story (2025)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+        { title: "AF - A Naija Christmas (2021)", image: "https://trexiptvpanel.net/imagenotfound.webp" },
+      ],
+      // Series examples
+      "AFRICAN SERIES": [
+        { title: "AF - 7ÈME POINT DU RIRE", image: "https://trexiptvpanel.net/imagenotfound.webp", info: "Seasons: 01" },
+        { title: "AF - A L'HOTEL", image: "https://trexiptvpanel.net/imagenotfound.webp", info: "Seasons: 01" },
+        { title: "AF - Accidental Siblings", image: "https://trexiptvpanel.net/imagenotfound.webp", info: "Seasons: 01" },
+        { title: "AF - Accusé A La Barre", image: "https://trexiptvpanel.net/imagenotfound.webp", info: "Seasons: 01" },
+        { title: "AF - ADAMS APPLE", image: "https://trexiptvpanel.net/imagenotfound.webp", info: "Seasons: 01,02" },
+        { title: "AF - Adja", image: "https://trexiptvpanel.net/imagenotfound.webp", info: "Seasons: 01" },
+        { title: "AF - Aiyetoro Town", image: "https://trexiptvpanel.net/imagenotfound.webp", info: "Seasons: 01" },
+        { title: "AF - Anikulapo: Rise of the", image: "https://trexiptvpanel.net/imagenotfound.webp", info: "Seasons: 01,02,03" },
+      ],
+    };
+
+    // Utiliser la clé de catégorie pour trouver les données correspondantes
+    const categoryKey = Object.keys(contentData).find(key => 
+      selectedCategory.toUpperCase().includes(key.toUpperCase()) ||
+      key.toUpperCase().includes(selectedCategory.toUpperCase())
+    );
+
+    if (categoryKey && contentData[categoryKey]) {
+      return contentData[categoryKey].map((item, index) => ({
+        id: index + 1,
+        title: item.title,
+        image: item.image,
+        seasons: item.info || "",
+      }));
+    }
+
+    // Génération de contenus génériques si pas de correspondance
     const items = [];
     for (let i = 1; i <= 24; i++) {
       items.push({
         id: i,
-        title: `${selectedCountry} - ${selectedCategory} ${i}`,
-        seasons: `Seasons: ${Math.floor(Math.random() * 7) + 1}`,
+        title: `${selectedCategory} ${i}`,
+        image: "https://trexiptvpanel.net/imagenotfound.webp",
+        seasons: selectedTab === "series" ? `Seasons: ${Math.floor(Math.random() * 3) + 1}` : "",
       });
     }
     return items;
@@ -570,17 +626,31 @@ const Catalogue = () => {
                   {viewLevel === "content" ? (
                     // Vue grille pour les contenus
                     <Card className="bg-card hover:bg-card/80 border-border hover:border-primary/50 transition-all duration-300 overflow-hidden group cursor-pointer">
-                      <div className="aspect-[2/3] bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                        <div className="text-center p-4">
-                          <TvMinimal className="w-12 h-12 mx-auto mb-2 text-primary/60" />
-                          <p className="text-xs text-muted-foreground">Image non disponible</p>
-                        </div>
+                      <div className="aspect-[2/3] bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center relative overflow-hidden">
+                        {item.image ? (
+                          <img 
+                            src={item.image} 
+                            alt={item.title}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                              e.currentTarget.parentElement!.innerHTML = '<div class="text-center p-4"><div class="w-12 h-12 mx-auto mb-2 text-primary/60"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 11 3 3 3-3"/><path d="M9 17h6"/></svg></div><p class="text-xs text-muted-foreground">Image non disponible</p></div>';
+                            }}
+                          />
+                        ) : (
+                          <div className="text-center p-4">
+                            <TvMinimal className="w-12 h-12 mx-auto mb-2 text-primary/60" />
+                            <p className="text-xs text-muted-foreground">Image non disponible</p>
+                          </div>
+                        )}
                       </div>
                       <div className="p-3">
                         <h3 className="font-semibold text-sm mb-1 line-clamp-2 group-hover:text-primary transition-colors">
                           {item.title}
                         </h3>
-                        <p className="text-xs text-muted-foreground">{item.seasons}</p>
+                        {item.seasons && (
+                          <p className="text-xs text-muted-foreground">{item.seasons}</p>
+                        )}
                       </div>
                     </Card>
                   ) : (
