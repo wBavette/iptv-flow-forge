@@ -11,8 +11,8 @@ const Navbar = () => {
   const menuItems = [
     { name: "Accueil", path: "/" },
     { name: "Abonnement", path: "/abonnement" },
-    { name: "Catalogue", path: "/catalogue" },
     { name: "Guide", path: "/guide" },
+    { name: "Revendeur", path: "/revendeur" },
   ];
 
   return (
