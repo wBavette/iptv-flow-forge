@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Slider } from "@/components/ui/slider";
 import { DollarSign, Users, Zap, Globe, Video, Headphones, Monitor, Settings } from "lucide-react";
@@ -80,8 +80,8 @@ const Revendeur = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
-            Devenez revendeur meru'IPTV
+          <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6">
+            Devenez <span className="text-gradient">Revendeur</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
             Lancez votre activité dès aujourd'hui !
@@ -98,30 +98,38 @@ const Revendeur = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-20"
         >
-          <Card className="max-w-4xl mx-auto bg-card/50 backdrop-blur-sm border-primary/20">
-            <CardHeader>
-              <CardTitle className="text-3xl text-center">Tarifs Revendeur</CardTitle>
-              <CardDescription className="text-center text-base">
+          <Card className="max-w-5xl mx-auto bg-gradient-to-br from-card via-card to-card/80 border-primary/30 card-shadow overflow-hidden">
+            <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 p-8 border-b border-primary/20">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-2">
+                Tarifs <span className="text-gradient">Revendeur</span>
+              </h2>
+              <p className="text-center text-muted-foreground">
                 Sélectionnez le nombre de crédits souhaité
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-8">
+              </p>
+            </div>
+            
+            <CardContent className="p-8 space-y-10">
               {/* Price Display */}
-              <div className="text-center space-y-2">
-                <div className="text-6xl font-bold text-primary">
-                  {selectedTier.credits}
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+                <div className="text-center">
+                  <div className="text-7xl md:text-8xl font-bold text-gradient">
+                    {selectedTier.credits}
+                  </div>
+                  <div className="text-xl text-muted-foreground font-medium">crédits</div>
                 </div>
-                <div className="text-2xl text-muted-foreground">crédits</div>
-                <div className="text-5xl font-bold mt-4">
-                  {selectedTier.price}€
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  Soit {(selectedTier.price / selectedTier.credits).toFixed(2)}€ par crédit
+                <div className="hidden md:block w-px h-24 bg-border"></div>
+                <div className="text-center">
+                  <div className="text-6xl md:text-7xl font-bold text-foreground">
+                    {selectedTier.price}€
+                  </div>
+                  <div className="text-sm text-muted-foreground mt-2 bg-primary/10 px-4 py-1 rounded-full inline-block">
+                    {(selectedTier.price / selectedTier.credits).toFixed(2)}€ / crédit
+                  </div>
                 </div>
               </div>
 
               {/* Slider */}
-              <div className="px-4">
+              <div className="px-4 md:px-12">
                 <Slider
                   value={[selectedTierIndex]}
                   onValueChange={(value) => setSelectedTierIndex(value[0])}
@@ -129,35 +137,40 @@ const Revendeur = () => {
                   step={1}
                   className="w-full"
                 />
-                <div className="flex justify-between mt-2 text-xs text-muted-foreground">
-                  <span>{pricingTiers[0].credits}</span>
-                  <span>{pricingTiers[pricingTiers.length - 1].credits}</span>
+                <div className="flex justify-between mt-3 text-sm text-muted-foreground font-medium">
+                  <span>{pricingTiers[0].credits} crédits</span>
+                  <span>{pricingTiers[pricingTiers.length - 1].credits} crédits</span>
                 </div>
               </div>
 
-              {/* All Pricing Tiers */}
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-8">
+              {/* All Pricing Tiers Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                 {pricingTiers.map((tier, index) => (
                   <button
                     key={tier.credits}
                     onClick={() => setSelectedTierIndex(index)}
-                    className={`p-3 rounded-lg border-2 transition-all ${
+                    className={`p-4 rounded-xl border-2 transition-all duration-300 ${
                       selectedTierIndex === index
-                        ? "border-primary bg-primary/10"
-                        : "border-border hover:border-primary/50"
+                        ? "border-primary bg-primary/15 shadow-lg shadow-primary/20 scale-105"
+                        : "border-border/50 bg-card/50 hover:border-primary/50 hover:bg-card"
                     }`}
                   >
-                    <div className="font-semibold">{tier.credits}</div>
-                    <div className="text-sm text-muted-foreground">{tier.price}€</div>
+                    <div className="font-bold text-lg">{tier.credits}</div>
+                    <div className="text-xs text-muted-foreground mb-1">crédits</div>
+                    <div className={`font-semibold ${selectedTierIndex === index ? "text-primary" : "text-foreground"}`}>
+                      {tier.price}€
+                    </div>
                   </button>
                 ))}
               </div>
 
-              <div className="text-center mt-8">
+              {/* CTA */}
+              <div className="text-center pt-4">
                 <Button
-                  size="lg"
+                  size="xl"
                   variant="hero"
                   onClick={() => window.open("https://wa.me/c/33751028057", "_blank")}
+                  className="px-12"
                 >
                   Commander sur WhatsApp
                 </Button>
