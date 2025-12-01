@@ -72,7 +72,8 @@ const Revendeur = () => {
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-background/95">
       <Navbar />
       
-      <main className="container mx-auto px-4 py-16">
+      <section className="pt-32 pb-20">
+        <div className="container mx-auto px-4">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -253,7 +254,8 @@ const Revendeur = () => {
             </AccordionItem>
           </Accordion>
         </motion.div>
-      </main>
+        </div>
+      </section>
 
       <Footer />
     </div>
