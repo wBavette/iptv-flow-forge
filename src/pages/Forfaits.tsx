@@ -26,7 +26,7 @@ const Forfaits = () => {
     },
     {
       name: "3 Mois",
-      price: "15",
+      price: "20",
       duration: "3 mois",
       description: "Parfait pour une utilisation régulière",
       features: [
@@ -43,7 +43,7 @@ const Forfaits = () => {
     },
     {
       name: "6 Mois",
-      price: "25",
+      price: "35",
       duration: "6 mois",
       description: "Meilleur rapport qualité-prix",
       features: [
@@ -60,7 +60,7 @@ const Forfaits = () => {
     },
     {
       name: "12 Mois",
-      price: "40",
+      price: "50",
       duration: "12 mois",
       description: "L'offre la plus économique",
       features: [
