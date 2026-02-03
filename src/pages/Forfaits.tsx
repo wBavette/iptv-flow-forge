@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,12 +10,14 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
 const Forfaits = () => {
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false })
+  );
+
   const plans = [
     {
       name: "1 Mois",
@@ -249,13 +252,7 @@ const Forfaits = () => {
                 align: "start",
                 loop: true,
               }}
-              plugins={[
-                Autoplay({
-                  delay: 4000,
-                  stopOnInteraction: true,
-                  stopOnMouseEnter: true,
-                }),
-              ]}
+              plugins={[autoplayPlugin.current]}
               className="w-full max-w-6xl mx-auto"
             >
               <CarouselContent className="-ml-2 md:-ml-4">
@@ -290,10 +287,6 @@ const Forfaits = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <div className="flex justify-center gap-4 mt-8">
-                <CarouselPrevious className="static translate-y-0 bg-card border-primary/30 hover:bg-primary/10 hover:border-primary" />
-                <CarouselNext className="static translate-y-0 bg-card border-primary/30 hover:bg-primary/10 hover:border-primary" />
-              </div>
             </Carousel>
           </motion.div>
         </div>
