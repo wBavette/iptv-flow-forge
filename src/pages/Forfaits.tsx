@@ -1,10 +1,17 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Star, Quote } from "lucide-react";
+import { Check, Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Forfaits = () => {
   const plans = [
@@ -236,44 +243,50 @@ const Forfaits = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {reviews.map((review, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                >
-                  <Card className="p-6 h-full bg-card border-border hover:border-primary/30 transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-4">
-                      <Avatar className="h-10 w-10 bg-primary/20">
-                        <AvatarFallback className="bg-primary/20 text-primary font-semibold text-sm">
-                          {review.initials}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <p className="font-semibold text-foreground">{review.name}</p>
-                        <p className="text-xs text-muted-foreground">{review.date}</p>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full max-w-6xl mx-auto"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {reviews.map((review, index) => (
+                  <CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                    <Card className="p-6 h-full bg-card border-border hover:border-primary/30 transition-all duration-300">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Avatar className="h-10 w-10 bg-primary/20">
+                          <AvatarFallback className="bg-primary/20 text-primary font-semibold text-sm">
+                            {review.initials}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="font-semibold text-foreground">{review.name}</p>
+                          <p className="text-xs text-muted-foreground">{review.date}</p>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="flex gap-1 mb-3">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                      ))}
-                    </div>
+                      <div className="flex gap-1 mb-3">
+                        {[...Array(review.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                        ))}
+                      </div>
 
-                    <div className="relative">
-                      <Quote className="w-6 h-6 text-primary/20 absolute -top-1 -left-1" />
-                      <p className="text-foreground/80 text-sm pl-4">
-                        {review.comment}
-                      </p>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+                      <div className="relative">
+                        <Quote className="w-6 h-6 text-primary/20 absolute -top-1 -left-1" />
+                        <p className="text-foreground/80 text-sm pl-4">
+                          {review.comment}
+                        </p>
+                      </div>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center gap-4 mt-8">
+                <CarouselPrevious className="static translate-y-0 bg-card border-primary/30 hover:bg-primary/10 hover:border-primary" />
+                <CarouselNext className="static translate-y-0 bg-card border-primary/30 hover:bg-primary/10 hover:border-primary" />
+              </div>
+            </Carousel>
           </motion.div>
         </div>
       </section>
