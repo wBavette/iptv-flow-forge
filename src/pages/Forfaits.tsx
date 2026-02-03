@@ -15,7 +15,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 const Forfaits = () => {
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: false })
+    Autoplay({ delay: 5000, stopOnInteraction: false, playOnInit: true })
   );
 
   const plans = [
@@ -117,6 +117,48 @@ const Forfaits = () => {
       rating: 5,
       comment: "Installation facile grâce au guide, et la qualité 4K est vraiment au rendez-vous !",
       date: "Il y a 1 semaine",
+    },
+    {
+      name: "Youssef D.",
+      initials: "YD",
+      rating: 5,
+      comment: "Abonné depuis 6 mois, jamais eu de problème. Le catalogue est énorme et toujours à jour.",
+      date: "Il y a 2 mois",
+    },
+    {
+      name: "Fatima Z.",
+      initials: "FZ",
+      rating: 5,
+      comment: "Toute la famille est ravie ! Les enfants adorent les dessins animés et nous les films récents.",
+      date: "Il y a 1 mois",
+    },
+    {
+      name: "Pierre L.",
+      initials: "PL",
+      rating: 5,
+      comment: "Le sport en direct sans coupure, c'est parfait pour les matchs. Qualité au top !",
+      date: "Il y a 3 semaines",
+    },
+    {
+      name: "Amina T.",
+      initials: "AT",
+      rating: 5,
+      comment: "J'hésitais au début mais l'essai gratuit m'a convaincue. Maintenant je suis abonnée 12 mois.",
+      date: "Il y a 2 semaines",
+    },
+    {
+      name: "Nicolas R.",
+      initials: "NR",
+      rating: 5,
+      comment: "Compatible avec ma Smart TV, mon téléphone et ma tablette. Vraiment pratique !",
+      date: "Il y a 1 mois",
+    },
+    {
+      name: "Leila H.",
+      initials: "LH",
+      rating: 5,
+      comment: "Le meilleur service que j'ai trouvé. Prix correct et qualité exceptionnelle.",
+      date: "Il y a 4 jours",
     },
   ];
 
