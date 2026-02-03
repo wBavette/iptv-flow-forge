@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check } from "lucide-react";
+import { Check, Star, Quote } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Forfaits = () => {
   const plans = [
@@ -74,6 +75,37 @@ const Forfaits = () => {
         "Technologie anti-buffering",
       ],
       popular: true,
+    },
+  ];
+
+  const reviews = [
+    {
+      name: "Mohamed A.",
+      initials: "MA",
+      rating: 5,
+      comment: "Service excellent ! La qualité d'image est incroyable et aucun buffering. Je recommande à 100%.",
+      date: "Il y a 2 semaines",
+    },
+    {
+      name: "Sarah L.",
+      initials: "SL",
+      rating: 5,
+      comment: "Enfin un service IPTV fiable ! Le support WhatsApp répond très rapidement. Très satisfaite.",
+      date: "Il y a 1 mois",
+    },
+    {
+      name: "Karim B.",
+      initials: "KB",
+      rating: 5,
+      comment: "J'ai testé plusieurs services avant, celui-ci est de loin le meilleur. Rapport qualité-prix imbattable.",
+      date: "Il y a 3 semaines",
+    },
+    {
+      name: "Julie M.",
+      initials: "JM",
+      rating: 5,
+      comment: "Installation facile grâce au guide, et la qualité 4K est vraiment au rendez-vous !",
+      date: "Il y a 1 semaine",
     },
   ];
 
@@ -185,6 +217,63 @@ const Forfaits = () => {
                 </Button>
               </a>
             </Card>
+          </motion.div>
+
+          {/* Reviews Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-20"
+          >
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+                Ce que disent nos <span className="text-gradient">clients</span>
+              </h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">
+                Découvrez les témoignages de nos clients satisfaits
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {reviews.map((review, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                >
+                  <Card className="p-6 h-full bg-card border-border hover:border-primary/30 transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Avatar className="h-10 w-10 bg-primary/20">
+                        <AvatarFallback className="bg-primary/20 text-primary font-semibold text-sm">
+                          {review.initials}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="font-semibold text-foreground">{review.name}</p>
+                        <p className="text-xs text-muted-foreground">{review.date}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-1 mb-3">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                      ))}
+                    </div>
+
+                    <div className="relative">
+                      <Quote className="w-6 h-6 text-primary/20 absolute -top-1 -left-1" />
+                      <p className="text-foreground/80 text-sm pl-4">
+                        {review.comment}
+                      </p>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
