@@ -15,7 +15,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 const Forfaits = () => {
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false })
+    Autoplay({ delay: 5000, stopOnInteraction: false })
   );
 
   const plans = [
